@@ -44,6 +44,7 @@
     /* Push content below fixed header */
     main {
       padding-top: 70px;
+      padding-bottom: 44px; /* room so counter bar doesn't overlap */
     }
 
     /* Image behavior */
@@ -54,32 +55,23 @@
       max-height: none;
     }
 
-    /* Bottom Counter */
-
+    /* Bottom Counter Bar */
     #counterBox {
-
       position: fixed;
-
       bottom: 0;
-
       left: 0;
-
       width: 100%;
-
       text-align: center;
-
       padding: 8px;
-
-      color: #aaa;
-
-      font-size: 16px;
-
       background: rgba(0,0,0,0.6);
-
       border-top: 1px solid #222;
-
+      z-index: 1000;
     }
 
+    #counterBox img {
+      height: 20px;
+      width: auto;
+    }
   </style>
 </head>
 
@@ -93,25 +85,13 @@
     <img class="hero-img" src="comingsoon.jpg" alt="Coming Soon" />
   </main>
 
-
   <div id="counterBox">
-    Visitors: <span id="counter">Loading...</span>
+    <!-- REAL shared counter badge (starts at 4101 using extraCount=4100) -->
+    <img
+      alt="Visitors"
+      src="https://hits.sh/10xLABZ.github.io/lifeiscrime.svg?label=Visitors&color=444&labelColor=000&style=flat&extraCount=4100"
+    />
   </div>
-
-
-  <script>
-
-    fetch("https://api.countapi.xyz/hit/lifeiscrime/visits")
-      .then(response => response.json())
-      .then(data => {
-
-        document.getElementById("counter").textContent =
-          data.value + 4100;
-
-      });
-
-  </script>
-
 
 </body>
 </html>
