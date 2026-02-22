@@ -43,30 +43,48 @@
 
     /* Push content below fixed header */
     main {
-      padding-top: 70px; /* exactly header height */
+      padding-top: 70px;
     }
 
     /* Image behavior */
     .hero-img {
       display: block;
       width: 100%;
-      height: auto;          /* keeps full image proportions */
-      max-height: none;      /* don't crop */
+      height: auto;
+      max-height: none;
     }
 
-    #counterBox{
-  text-align:center;
-  padding:18px 12px;
-  color:#aaa;
-  font-size:16px;
-  background:#000;
-  border-top:1px solid #222;
-}
-    
+    /* Bottom Counter */
+
+    #counterBox {
+
+      position: fixed;
+
+      bottom: 0;
+
+      left: 0;
+
+      width: 100%;
+
+      text-align: center;
+
+      padding: 8px;
+
+      color: #aaa;
+
+      font-size: 16px;
+
+      background: rgba(0,0,0,0.6);
+
+      border-top: 1px solid #222;
+
+    }
+
   </style>
 </head>
 
 <body>
+
   <header>
     <div class="siteTitle">LifeIsCrime<span>.com</span></div>
   </header>
@@ -74,26 +92,26 @@
   <main>
     <img class="hero-img" src="comingsoon.jpg" alt="Coming Soon" />
   </main>
+
+
+  <div id="counterBox">
+    Visitors: <span id="counter">Loading...</span>
+  </div>
+
+
+  <script>
+
+    fetch("https://api.countapi.xyz/hit/lifeiscrime/visits")
+      .then(response => response.json())
+      .then(data => {
+
+        document.getElementById("counter").textContent =
+          data.value + 4100;
+
+      });
+
+  </script>
+
+
 </body>
-
-  
-<div id="counterBox">
-  Visitors: <span id="counter">Loading...</span>
-</div>
-
-<script>
-  // REAL shared visitor counter (global)
-  fetch("https://api.countapi.xyz/hit/lifeiscrime.com/visits")
-    .then(r => r.json())
-    .then(d => {
-      // Makes it START displaying at 4101
-      const displayCount = d.value + 4100;
-      document.getElementById("counter").textContent = displayCount.toLocaleString();
-    })
-    .catch(() => {
-      document.getElementById("counter").textContent = "—";
-    });
-</script>
-
-
 </html>
