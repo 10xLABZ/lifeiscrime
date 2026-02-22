@@ -53,6 +53,16 @@
       height: auto;          /* keeps full image proportions */
       max-height: none;      /* don't crop */
     }
+
+    #counterBox{
+  text-align:center;
+  padding:18px 12px;
+  color:#aaa;
+  font-size:16px;
+  background:#000;
+  border-top:1px solid #222;
+}
+    
   </style>
 </head>
 
@@ -65,4 +75,25 @@
     <img class="hero-img" src="comingsoon.jpg" alt="Coming Soon" />
   </main>
 </body>
+
+  
+<div id="counterBox">
+  Visitors: <span id="counter">Loading...</span>
+</div>
+
+<script>
+  // REAL shared visitor counter (global)
+  fetch("https://api.countapi.xyz/hit/lifeiscrime.com/visits")
+    .then(r => r.json())
+    .then(d => {
+      // Makes it START displaying at 4101
+      const displayCount = d.value + 4100;
+      document.getElementById("counter").textContent = displayCount.toLocaleString();
+    })
+    .catch(() => {
+      document.getElementById("counter").textContent = "—";
+    });
+</script>
+
+
 </html>
